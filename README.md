@@ -7,6 +7,8 @@
 
 # API KEY: b48c7c3c-928896fd-ab81473c-4caa5f77
 
+# API URL: https://fortniteapi.io/v2/items/list?lang=ru
+
 1. в гет параметрах можно поменять язык входящих данных
 2. в постмане в headers добавляем заголовок Authorization и указываем ему ключ b48c7c3c-928896fd-ab81473c-4caa5f77
 
@@ -46,3 +48,4 @@
 
 # Ctrl+Shift+P format-document
 
+# вывод списка товаров:

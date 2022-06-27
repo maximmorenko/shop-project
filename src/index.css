@@ -23,6 +23,16 @@ nav {
   gap: 1rem;
 }
 
+.card {
+  display: flex;
+  flex-direction: column;
+
+}
+/* дочернему элементу чтобы не прыгал установим гроу */
+.card-content {
+  flex-grow: 1;
+}
+
 
 /* .search-btn {
   position: absolute;
