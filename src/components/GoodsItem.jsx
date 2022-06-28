@@ -4,24 +4,31 @@ function GoodsItem(props) {
     const { 
         mainId, 
         displayName, 
-        displayDescription = 'нет описания', 
+        displayDescription, 
         price, 
-        displayAssets
+        displayAssets,
+        cb = Function.prototype
     } = props;
     return (
         <div className='card' id={mainId}>
             <div className='card-image'>
                 <img src={displayAssets[0].full_background} alt={displayName}/>
-                
             </div>
-            <div className='card-content'>
+            <div className='card-content deep-purple lighten-4'>
             <span className='card-title'>{displayName}</span>
                 <p>
                     {displayDescription}
                 </p>
             </div>
-            <div className="card-action">
-                <button className='btn'>Купить</button>
+            <div className="card-action deep-purple lighten-3">
+                <button className='btn deep-purple darken-1 white-text' onClick={() => {
+                    // при клике вызываем наш колбек и передаем в него параметры id name price
+                    cb({
+                        mainId, 
+                        displayName,        
+                        price, 
+                    })
+                    }}>Купить</button>
                 <span className='right' style={{fontSize: '1.8rem'}}>{price.regularPrice} руб.</span>
             </div>
         </div>

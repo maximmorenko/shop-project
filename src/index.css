@@ -33,6 +33,28 @@ nav {
   flex-grow: 1;
 }
 
+/* .cart-quantity {
+
+} */
+/* стили корзины для моб */
+.cart {
+  /* фиксируем позицию, чтобы все время была на виду */
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  cursor: pointer;
+  z-index: 5;
+  padding: 1rem;
+}
+/* для стилей на ПК используем медиа */
+/* начиная с ширины 767px будем менять значени .cart*/
+@media (min-width: 767px) {
+  .cart {
+    top: 5rem;
+    bottom: unset;
+    /* остальные наследуются */
+  }
+}
 
 /* .search-btn {
   position: absolute;
