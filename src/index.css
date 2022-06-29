@@ -56,12 +56,36 @@ nav {
   }
 }
 
-/* .search-btn {
+.basket-list {
+  
+  /* отображение по центру */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  background-color: rgb(255, 255, 255);
+
+  /* зададим ширину */
+  width: 50rem;
+  /* если маленькое устройство то ширина не более 95% */
+  max-width: 95%;
+
+  /* тень */
+  /* box-shadow: inset -1px 3px 8px 5px #949494, 4px 10px 12px 0px #4b535b, 5px 5px 15px 5px rgba(0, 0, 0, 0); */
+}
+
+.shadow {
+  box-shadow: 3px 3px 6px 1px #39243a;
+}
+
+.close-icons {
+  cursor: pointer;
+}
+.bascet-close {
+  cursor: pointer;
   position: absolute;
-  top: 0;
-  right: 0.5rem;
-} */
-/* добавим радиокнопкам отступы справа всем лебл кроме последнего*/
-/* label:not(:last-child) {
-  margin-right: 3rem;
-} */
+  top: 0.5rem;
+  right: 1.2rem;
+  color: white;
+}

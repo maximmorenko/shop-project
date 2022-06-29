@@ -10,7 +10,7 @@ function GoodsItem(props) {
         cb = Function.prototype
     } = props;
     return (
-        <div className='card' id={mainId}>
+        <div className='card shadow' id={mainId}>
             <div className='card-image'>
                 <img src={displayAssets[0].full_background} alt={displayName}/>
             </div>
@@ -21,7 +21,7 @@ function GoodsItem(props) {
                 </p>
             </div>
             <div className="card-action deep-purple lighten-3">
-                <button className='btn deep-purple darken-1 white-text' onClick={() => {
+                <button className='btn deep-purple lighten-1 white-text shadow' onClick={() => {
                     // при клике вызываем наш колбек и передаем в него параметры id name price
                     cb({
                         mainId, 

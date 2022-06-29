@@ -4,14 +4,16 @@ import { API_KEY, API_URL } from '../config';
 import Preloader from './Preloader';
 import GoodsList from './GoodsList';
 import Cart from './Cart';
-
+import BasketList from './BasketList';
 
 function Shop(props) {
     // создазим состояниz списка товаров и загрузки
-    const  [goods, setGoods] = useState([]);
-    const  [loading, setLoading] = useState(true);
+    const [goods, setGoods] = useState([]);
+    const [loading, setLoading] = useState(true);
     // создадим еще одно состояние с массивом заказанных товаров
     const [order, setOrder] = useState([]);
+    // создадим состояние видим мы корзину или нет
+    const [isBasketShow, setBasketShow] = useState(false);
 
     const addToBasket = (item) => {
         // функция принимает один элемент товара (item), в нем будет id название и цена
@@ -21,16 +23,18 @@ function Shop(props) {
         // и пробежим по массиву order, проверим наличие товара с текущим товаром по id
         // создадим константу и запишем в нее резулльтат findIndex
         // будем проверять совпадают ли id, если id совпадет, то мы получим индех этого элемента, если не найдем то получим -1
-        const itemIndex = order.findIndex(orderItem => orderItem.mainId === item.mainId); //получим индех элемента или -1
+        const itemIndex = order.findIndex(
+            (orderItem) => orderItem.mainId === item.mainId
+        ); //получим индех элемента или -1
         if (itemIndex === -1) {
             // если не находим в ордере текущий элемент, то:
             const newItem = {
                 ...item,
-                quantity: 1
-            }
-            // функция setOrder() возвращает массив, в котором развoрачиваем уже существующие товары ...order 
+                quantity: 1,
+            };
+            // функция setOrder() возвращает массив, в котором развoрачиваем уже существующие товары ...order
             // и добавляет туда новый объект newItem
-            setOrder([...order, newItem])
+            setOrder([...order, newItem]);
         } else {
             // если найдем такой элемент то мы должны прибавить +1 к quantity етого элемента, а осталььные оставить без изменения
             // для начала нужно найти этот элемент
@@ -41,41 +45,55 @@ function Shop(props) {
                     // если индексы совпадают то перезапишем елемент, добавим +1 к quantity, а остальные ключи развернем без измен.
                     return {
                         ...orderItem,
-                        quantity: orderItem.quantity + 1
-                    }
+                        quantity: orderItem.quantity + 1,
+                    };
                 } else {
                     // если индексы НЕ совпадают, т.е не найден, то вернем текущий элемент
                     return orderItem;
                 }
-            })
-            setOrder(newOrder) // отправляем новый массив в нащ стейт
+            });
+            setOrder(newOrder); // отправляем новый массив в нащ стейт
         }
-    }
+    };
+
+    // функция меняющая состояние показа корзины. передаем функцию в корзину cart
+    const handleBasketShow = () => {
+        setBasketShow(!isBasketShow);
+    };
 
     useEffect(() => {
         // передаем ссылку и ключ через заголовок
         // вторым параметром у фетча является объект настроек, там и передаем ключ
-        fetch(API_URL, { 
-            headers: { 
+        fetch(API_URL, {
+            headers: {
                 Authorization: API_KEY,
             },
         })
-        .then(response => response.json())
-        .then((data) => { 
-            data.shop && setGoods(data.shop); 
-            setLoading(false); 
-        })
-        
+            .then((response) => response.json())
+            .then((data) => {
+                data.shop && setGoods(data.shop);
+                setLoading(false);
+            });
     }, []);
-    
 
-    return <main className='container content'>
-        <Cart quantity={order.length}/>
-        {/* сделаем проверку, если ключ loading = true, то возвращаем прелоадер, если фолс то передаем через пропс goods товары */}
-        {loading ? <Preloader /> : 
-        <GoodsList goods={goods} cb={addToBasket}/>
-    }
-    </main>;
+    return (
+        <main className='container content'>
+            <Cart quantity={order.length} handleBasketShow={handleBasketShow}/>
+            
+            {/* сделаем проверку, если ключ loading = true, то возвращаем прелоадер, если фолс то передаем через пропс goods товары */}
+            {loading ? (
+                <Preloader />
+            ) : (
+                <GoodsList goods={goods} cb={addToBasket} />
+            )}
+
+            {/* корзину показываем только когда ключ isBasketShow активен (true), при клике на корзину ключ меняется, 
+            делаем проверку и передаем список заказов order*/}
+            {/* также передаем функцию показа корзины, добавим в нее иконку и по весим на клик эту функцию */}
+            {isBasketShow && <BasketList order={order} handleBasketShow={handleBasketShow}/>}
+            
+        </main>
+    );
 }
 
 export default Shop;
