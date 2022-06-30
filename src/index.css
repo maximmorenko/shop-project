@@ -5,7 +5,13 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  background-color: rgb(0 78 81);
 }
+
+/* .main {
+  background-color: black;
+} */
 
 /* добавим отступы у нава */
 nav {
@@ -20,22 +26,18 @@ nav {
   /* повторение колонок, в зависимости от ширины повторение будет меняться */
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   /* растояние между элементами */
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .card {
   display: flex;
   flex-direction: column;
-
 }
 /* дочернему элементу чтобы не прыгал установим гроу */
 .card-content {
   flex-grow: 1;
 }
 
-/* .cart-quantity {
-
-} */
 /* стили корзины для моб */
 .cart {
   /* фиксируем позицию, чтобы все время была на виду */
@@ -50,11 +52,51 @@ nav {
 /* начиная с ширины 767px будем менять значени .cart*/
 @media (min-width: 767px) {
   .cart {
-    top: 5rem;
+    top: 7rem;
     bottom: unset;
     /* остальные наследуются */
   }
 }
+
+
+
+.collection-item {
+  color: #000000;
+}
+
+.shadow {
+  box-shadow: 3px 3px 8px 1px #5ae6ff;
+}
+.shadow-2 {
+  box-shadow: 3px 3px 8px 1px #313356;
+}
+.shadow-3 {
+  box-shadow: 0px 0px 100px 50px #00646d;
+}
+
+.close-icons {
+  cursor: pointer;
+}
+
+.bascet-close {
+  cursor: pointer;
+  position: absolute;
+  top: 0.5rem;
+  right: 1.2rem;
+  color: white;
+}
+
+/* фиксируем позицию и растягиваем на все окно и прячем по умолчанию*/
+/* .myModal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: none;
+  background-color: rgb(0, 0, 0, 0.5);
+  z-index: 6;
+} */
 
 .basket-list {
   
@@ -73,19 +115,23 @@ nav {
 
   /* тень */
   /* box-shadow: inset -1px 3px 8px 5px #949494, 4px 10px 12px 0px #4b535b, 5px 5px 15px 5px rgba(0, 0, 0, 0); */
+
+  /* анимация */
+  animation: show 500ms ease-in-out;
 }
 
-.shadow {
-  box-shadow: 3px 3px 6px 1px #39243a;
-}
+/* добавим анимацию корзине */
+@keyframes show {
+  /*из состояния */
+  from {
+    top: 70%;
+    opacity: 0;
+  }
 
-.close-icons {
-  cursor: pointer;
-}
-.bascet-close {
-  cursor: pointer;
-  position: absolute;
-  top: 0.5rem;
-  right: 1.2rem;
-  color: white;
+  to {
+    top: 50%;
+    opacity: 1;
+
+  }
+  
 }

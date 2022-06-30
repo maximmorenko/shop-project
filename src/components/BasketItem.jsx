@@ -7,15 +7,16 @@ function BasketItem(props) {
         mainId, 
         displayName,
         price,
-        quantity
+        quantity,
+        removeFromBasket = Function.prototype
     } = props;
 
     return (
-        <li className="collection-item" id={mainId}>
-            {displayName} x{quantity} = {price.regularPrice} руб.
+        <li className="collection-item" id={mainId} style={{backgroundColor: '#00dcf9'}}>
+            {displayName} x {quantity} = {price.regularPrice * quantity} $
             {/* // иконка удаления */}
             <span className="secondary-content" style={{color: 'rgb(114, 30, 159)'}}>
-                <i className="material-icons close-icons " >close</i>
+                <i className="material-icons close-icons" onClick={()=>{removeFromBasket(mainId)}}>close</i>
             </span> 
         </li>
     );

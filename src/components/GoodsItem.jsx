@@ -10,26 +10,26 @@ function GoodsItem(props) {
         cb = Function.prototype
     } = props;
     return (
-        <div className='card shadow' id={mainId}>
+        <div className='card shadow-2 card-hover' id={mainId}>
             <div className='card-image'>
                 <img src={displayAssets[0].full_background} alt={displayName}/>
             </div>
-            <div className='card-content deep-purple lighten-4'>
+            <div className='card-content cyan darken-1'>
             <span className='card-title'>{displayName}</span>
                 <p>
                     {displayDescription}
                 </p>
             </div>
-            <div className="card-action deep-purple lighten-3">
-                <button className='btn deep-purple lighten-1 white-text shadow' onClick={() => {
+            <div className="card-action pink lighten-3">
+                <button className='btn pink lighten-1 white-text shadow' style={{width: '8rem', fontSize: '1.2rem'}} onClick={() => {
                     // при клике вызываем наш колбек и передаем в него параметры id name price
                     cb({
                         mainId, 
                         displayName,        
                         price, 
                     })
-                    }}>Купить</button>
-                <span className='right' style={{fontSize: '1.8rem'}}>{price.regularPrice} руб.</span>
+                    }}>Buy</button>
+                <span className='right' style={{fontSize: '1.8rem'}}>{price.regularPrice} $</span>
             </div>
         </div>
     );

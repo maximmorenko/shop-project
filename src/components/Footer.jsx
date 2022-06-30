@@ -3,7 +3,7 @@ import React from 'react';
 
 function Footer(props) {
     return (
-        <footer className='page-footer deep-purple lighten-2'>
+        <footer className='page-footer pink lighten-1'>
             <div className='footer-copyright'>
                 <div className='container'>
                     © {new Date().getFullYear()} Copyright Text

@@ -56,7 +56,18 @@ function Shop(props) {
         }
     };
 
-    // функция меняющая состояние показа корзины. передаем функцию в корзину cart
+    // так как информация о заказе хранится в этом компоненте, то и функцию удаления товара из корзины будем писать на этом уровне
+    // и передавать ее в корзину на иконку (close) через онКлик
+    const removeFromBasket = (itemId) => {
+        // на входе получаем id товара (mainId)
+        // пробежим фильтром по списку в корзине и оставим только те товары id которых не совпадают с переданным id
+        // запишем новый отфильтрованный массив в константу и передадим его в стейт
+        const newOrder = order.filter(el => el.mainId !== itemId);
+        setOrder(newOrder);
+    }
+
+
+    // функция меняющая состояние показа корзины. передаем функцию в корзину cart и в список товаров в корзине на иконку
     const handleBasketShow = () => {
         setBasketShow(!isBasketShow);
     };
@@ -77,7 +88,7 @@ function Shop(props) {
     }, []);
 
     return (
-        <main className='container content'>
+        <main className='container content main'>
             <Cart quantity={order.length} handleBasketShow={handleBasketShow}/>
             
             {/* сделаем проверку, если ключ loading = true, то возвращаем прелоадер, если фолс то передаем через пропс goods товары */}
@@ -90,7 +101,11 @@ function Shop(props) {
             {/* корзину показываем только когда ключ isBasketShow активен (true), при клике на корзину ключ меняется, 
             делаем проверку и передаем список заказов order*/}
             {/* также передаем функцию показа корзины, добавим в нее иконку и по весим на клик эту функцию */}
-            {isBasketShow && <BasketList order={order} handleBasketShow={handleBasketShow}/>}
+            {isBasketShow && <BasketList 
+            order={order} 
+            handleBasketShow={handleBasketShow} 
+            removeFromBasket={removeFromBasket}
+            />}
             
         </main>
     );

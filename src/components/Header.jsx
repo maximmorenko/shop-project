@@ -3,7 +3,7 @@ import React from 'react';
 function Header(props) {
     return (
         // меняем цвет наву, добавляем классНейм наву с названием цвета из палитры в библиотеке https://materializecss.com/color.html
-        <nav className='deep-purple lighten-2 shadow' style={{marginBottom: '1rem'}}>
+        <nav className='pink lighten-1 shadow' style={{marginBottom: '1rem'}}>
             <div className='nav-wrapper'>
                 <a href='#' className='brand-logo'>
                     React Shop
