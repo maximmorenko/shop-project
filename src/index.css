@@ -76,6 +76,7 @@ nav {
 
 .close-icons {
   cursor: pointer;
+  color: #00646d;
 }
 
 .bascet-close {
@@ -84,6 +85,12 @@ nav {
   top: 0.5rem;
   right: 1.2rem;
   color: white;
+}
+
+.count-icons {
+  cursor: pointer;
+  color: #a1009f;
+  vertical-align: middle;
 }
 
 /* фиксируем позицию и растягиваем на все окно и прячем по умолчанию*/

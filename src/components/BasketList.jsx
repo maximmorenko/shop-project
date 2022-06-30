@@ -4,7 +4,9 @@ import BasketItem from './BasketItem';
 function BasketList(props) {
     const {order = [], 
         handleBasketShow = Function.prototype, 
-        removeFromBasket = Function.prototype
+        removeFromBasket = Function.prototype,
+        incItemBasket = Function.prototype,
+        decItemBasket = Function.prototype,
      } = props; // ожидаем список товаров, массив
 
     // общую стоимость товаров запишем в переменную, и будем обновлять ее динамически. добавим ее в li
@@ -25,7 +27,13 @@ function BasketList(props) {
             если массив пустой то выведем еще один елемент списка(li) с надписью Корзина пуста*/}
             {
                 order.length 
-                ? order.map((item) => <BasketItem key={item.mainId} {...item} removeFromBasket={removeFromBasket}/>) 
+                ? order.map((item) => <BasketItem 
+                key={item.mainId} 
+                {...item} 
+                removeFromBasket={removeFromBasket}
+                incItemBasket={incItemBasket}
+                decItemBasket={decItemBasket}
+                />) 
                 // пробрасываем функцию удаления removeFromBasket на нижний уровень 
                 : <li className="collection-item">Cart is empty</li>
             }

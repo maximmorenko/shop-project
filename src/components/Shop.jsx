@@ -66,6 +66,47 @@ function Shop(props) {
         setOrder(newOrder);
     }
 
+    //Для того чтобы сделать кнопки увеличения и уменьшения товаров в корзине 
+    // создадим две функции и передадим их к элементу корзины
+    const incItemBasket = (id) => {
+        // создадим константу и запишем в неё новый массив полученый в результате операции + над елементом корзины (через мап)
+        const newOrderInc = order.map((el) => {
+            if (el.mainId === id) {
+                // то мы должны вернуть новый квонтити а остальные ключи оставить как есть (развернуть их)
+                const newQuantity = el.quantity + 1;
+                return {
+                    ...el,
+                    quantity: newQuantity,
+                }
+            } else {
+                // иначе возвращаем обычный элемент
+                return el;
+            }
+            
+        })
+        setOrder(newOrderInc);
+    }
+
+    const decItemBasket = (id) => {
+        // создадим константу и запишем в неё новый массив полученый в результате операции + над елементом корзины (через мап)
+        const newOrderDec = order.map(el => {
+            if (el.mainId === id) {
+                // то мы должны вернуть новый квонтити а остальные ключи оставить как есть (развернуть их)
+                const newQuantity = el.quantity - 1;
+                return {
+                    ...el,
+                    // сделаем провверку что квонтити не меньше нуля:
+                    quantity: newQuantity >= 0 ? newQuantity : 0,
+                };
+                
+            } else {
+                // иначе возвращаем обычный элемент
+                return el;
+            }
+            
+        })
+        setOrder(newOrderDec);
+    }
 
     // функция меняющая состояние показа корзины. передаем функцию в корзину cart и в список товаров в корзине на иконку
     const handleBasketShow = () => {
@@ -105,6 +146,8 @@ function Shop(props) {
             order={order} 
             handleBasketShow={handleBasketShow} 
             removeFromBasket={removeFromBasket}
+            incItemBasket={incItemBasket}
+            decItemBasket={decItemBasket}
             />}
             
         </main>
