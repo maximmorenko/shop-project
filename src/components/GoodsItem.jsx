@@ -10,18 +10,18 @@ function GoodsItem(props) {
         cb = Function.prototype
     } = props;
     return (
-        <div className='card shadow-2 card-hover' id={mainId}>
+        <div className='card shadow-2' id={mainId}>
             <div className='card-image'>
                 <img src={displayAssets[0].full_background} alt={displayName}/>
             </div>
-            <div className='card-content cyan darken-1'>
+            <div className='card-content grey lighten-5'>
             <span className='card-title'>{displayName}</span>
                 <p>
                     {displayDescription}
                 </p>
             </div>
-            <div className="card-action pink lighten-3">
-                <button className='btn pink lighten-1 white-text shadow' style={{width: '8rem', fontSize: '1.2rem'}} onClick={() => {
+            <div className="card-action grey lighten-5">
+                <button className='btn pink lighten-1 white-text' style={{width: '8rem', fontSize: '1.2rem'}} onClick={() => {
                     // при клике вызываем наш колбек и передаем в него параметры id name price
                     cb({
                         mainId, 

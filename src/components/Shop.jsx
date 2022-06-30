@@ -5,6 +5,8 @@ import Preloader from './Preloader';
 import GoodsList from './GoodsList';
 import Cart from './Cart';
 import BasketList from './BasketList';
+import Alert from './Alert';
+
 
 function Shop(props) {
     // создазим состояниz списка товаров и загрузки
@@ -14,6 +16,14 @@ function Shop(props) {
     const [order, setOrder] = useState([]);
     // создадим состояние видим мы корзину или нет
     const [isBasketShow, setBasketShow] = useState(false);
+    // создадим состояние алерта (всплывающее уведомление что товар добавлен в корзину)
+    const [alertName, setAlertName] = useState('');
+
+
+    // функция очищающая алерт
+    const closeAlert = () => {
+        setAlertName('');
+    };
 
     const addToBasket = (item) => {
         // функция принимает один элемент товара (item), в нем будет id название и цена
@@ -54,6 +64,8 @@ function Shop(props) {
             });
             setOrder(newOrder); // отправляем новый массив в нащ стейт
         }
+        // запускаем алерт при добавелнии в корзину товара и передаем в алерт имя товара
+        setAlertName(item.displayName);
     };
 
     // так как информация о заказе хранится в этом компоненте, то и функцию удаления товара из корзины будем писать на этом уровне
@@ -149,6 +161,12 @@ function Shop(props) {
             incItemBasket={incItemBasket}
             decItemBasket={decItemBasket}
             />}
+
+            {/* выводим алерт уведомление через проверку:
+            если алертНеим есть то отрисовываем алерт уведомление*/}
+            {
+                alertName && <Alert alertName={alertName} closeAlert={closeAlert}/>
+            }
             
         </main>
     );

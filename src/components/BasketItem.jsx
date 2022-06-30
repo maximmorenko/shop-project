@@ -14,7 +14,7 @@ function BasketItem(props) {
     } = props;
 
     return (
-        <li className="collection-item" id={mainId} style={{backgroundColor: '#00dcf9'}}>
+        <li className="collection-item grey lighten-5" id={mainId}>
             {displayName}{' '}
             <i className="material-icons count-icons" onClick={()=> decItemBasket(mainId)}>remove</i>
             x{quantity}
