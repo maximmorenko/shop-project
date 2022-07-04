@@ -3,6 +3,14 @@ export function reducer(state, {type, payload}) {
     // будем свичом пробегаться по тайпу и смотреть какие есть варианты значения
     switch (type) { 
 
+        case 'SET_GOODS': 
+        return {
+            // меняем поле goods
+            ...state,
+            goods: payload || [], //на случай undefined передадим значение пустого массива
+            loading: false,
+        }
+
         case 'ADD_TO_BASKET':
 
             {

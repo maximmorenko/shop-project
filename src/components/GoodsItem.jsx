@@ -1,4 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import {ShopContext} from '../context'
+// здесь мы ожидаем одну функцию, которую раньше получали из пропсов (эдТуБаскет)
+// теперь будем получать ее из контекста
+
 
 function GoodsItem(props) {
     const { 
@@ -7,8 +11,12 @@ function GoodsItem(props) {
         displayDescription, 
         price, 
         displayAssets,
-        cb = Function.prototype
+        // cb = Function.prototype //теперь здесь функция не нужна, также удалим ее в goodsList
     } = props;
+
+    //достаем нужный метод из контекста, (делаем деструктуризацию хука)
+    const {addToBasket} = useContext(ShopContext);
+
     return (
         <div className='card shadow-2' id={mainId}>
             <div className='card-image'>
@@ -23,7 +31,7 @@ function GoodsItem(props) {
             <div className="card-action grey lighten-5">
                 <button className='btn pink lighten-1 white-text' style={{width: '8rem', fontSize: '1.2rem'}} onClick={() => {
                     // при клике вызываем наш колбек и передаем в него параметры id name price
-                    cb({
+                    addToBasket({
                         mainId, 
                         displayName,        
                         price, 

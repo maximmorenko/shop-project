@@ -1,8 +1,11 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import { ShopContext } from '../context';
 import GoodsItem from './GoodsItem';
 
+
 function GoodsList(props) {
-    const {goods = [], cb = Function.prototype} = props;
+    const { goods = [] } = useContext(ShopContext);
+
     // если список пустой то выведем h3
     if (!goods.length) {
         return <h3>Nothing here</h3>
@@ -12,7 +15,7 @@ function GoodsList(props) {
         // и каждому элементу передадим пропсы
         <div className='goods'>
             {goods.map(
-                item => {return <GoodsItem key={item.mainId} {...item} cb={cb}/>}
+                item => {return <GoodsItem key={item.mainId} {...item} />}
                 )}
         </div>
     );

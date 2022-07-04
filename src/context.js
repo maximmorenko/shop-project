@@ -34,7 +34,6 @@ export const ContextProvider = ({children}) => {
             type: 'ADD_TO_BASKET', 
             payload: item,
         });
-
     }
 
     // эмулируем функцию removeFromBasket
@@ -70,7 +69,12 @@ export const ContextProvider = ({children}) => {
         dispatch({type: 'HANDLE_BASKET_SHOW'}); //dispatch будет принимать action {type, pyload}
     }
 
-    return <ShopContext.Provider>
+    // эмулируем функцию получения данных
+    value.setGoods = (data) => {
+        dispatch({type: 'SET_GOODS', payload: data});
+    }
+
+    return <ShopContext.Provider value={value}>
         {children}
     </ShopContext.Provider>
 }

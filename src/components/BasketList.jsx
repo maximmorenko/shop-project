@@ -1,13 +1,11 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import { ShopContext } from '../context';
 import BasketItem from './BasketItem';
 
-function BasketList(props) {
-    const {order = [], 
-        handleBasketShow = Function.prototype, 
-        removeFromBasket = Function.prototype,
-        incItemBasket = Function.prototype,
-        decItemBasket = Function.prototype,
-     } = props; // ожидаем список товаров, массив
+function BasketList() {
+
+    const { handleBasketShow = Function.prototype , order = [],} = useContext(ShopContext);
+
 
     // общую стоимость товаров запишем в переменную, и будем обновлять ее динамически. добавим ее в li
     // будем использовать редьюс, пробежим по выбраному списку товаров и будем каждый раз прибавлять к аккумулятору значение прайса
@@ -30,9 +28,6 @@ function BasketList(props) {
                 ? order.map((item) => <BasketItem 
                 key={item.mainId} 
                 {...item} 
-                removeFromBasket={removeFromBasket}
-                incItemBasket={incItemBasket}
-                decItemBasket={decItemBasket}
                 />) 
                 // пробрасываем функцию удаления removeFromBasket на нижний уровень 
                 : <li className="collection-item grey lighten-5">Cart is empty</li>

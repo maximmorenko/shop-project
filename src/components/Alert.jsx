@@ -1,9 +1,13 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useContext} from 'react';
+import {ShopContext} from '../context'
 // всплывающая подсказка о том что товар добавлен в корзину
 // этот алерт будем скрывать по таймеру, для этого будем исмользовать юзэффект и его жизненые циклы
 
-function Alert(props) {
-    const {alertName = '', closeAlert = Function.prototype} = props; // на входе будет имя товара (по умолчанию пустое) и функция очищающая алерт
+function Alert() {
+
+    const {alertName = '', closeAlert = Function.prototype} = useContext(ShopContext);
+
+    //const {alertName = '', closeAlert = Function.prototype} = props; // на входе будет имя товара (по умолчанию пустое) и функция очищающая алерт
 
     useEffect(() => {
         // создадим таймер, по окончанию времени будет вызвваться функция очистки алетра closeAlert
